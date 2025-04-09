@@ -29,9 +29,10 @@ function Login() {
         
         try {
             const result = await loginUser(email, password);
-
+            
             if (result.status) {
-                navigate('/app/team');
+                alert("Login successful!");
+                navigate('/app/dashboard');
             } else {
                 setErrorMessage(result.message);
             }
@@ -57,7 +58,7 @@ function Login() {
                 <div className="grid md:grid-cols-2 grid-cols-1 bg-base-100 rounded-xl">
                     <div className="relative hidden md:block">
                         <img
-                            src="Designer2.jpeg"
+                            src="https://imgs.search.brave.com/l6BMKLrHBaObCqw-zpxu5K0qvVY3LS8_9Y1YrWLbufc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pczEt/c3NsLm16c3RhdGlj/LmNvbS9pbWFnZS90/aHVtYi9QdXJwbGVT/b3VyY2UyMjEvdjQv/NjQvZDcvZDkvNjRk/N2Q5OGQtYzY4ZC04/ZTE2LWFiZGEtNmY1/ZTJjMzFjZWEzLzQz/NDBjZjU1LTdjMTAt/NGQ1ZS05ZmZiLWUz/NTcyNGFiYzNmYV8y/MTYxLnBuZy83NTB4/NzUwYmIuanBlZw"
                             alt="Login Image"
                             className="w-full h-full object-cover rounded-l-xl"
                         />

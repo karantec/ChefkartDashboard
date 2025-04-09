@@ -39,14 +39,24 @@ function ServiceList() {
          name: service.name,
          category: service.category,
          image: service.image,
-          file: "",
+         file: "",
          description: service.description,
       });
    };
 
    const handleUpdate = async () => {
       try {
-         await axios.put(`http://localhost:8000/product/${selectedService._id}`, formData);
+         const updateData = new FormData();
+         updateData.append("name", formData.name);
+         updateData.append("category", formData.category);
+         updateData.append("description", formData.description);
+         updateData.append("image", formData.image);
+         if (formData.file instanceof File) updateData.append("file", formData.file);
+
+         await axios.put(`http://localhost:8000/product/${selectedService._id}`, updateData, {
+            headers: { "Content-Type": "multipart/form-data" },
+         });
+
          setSelectedService(null);
          fetchServices();
       } catch (err) {
@@ -56,7 +66,17 @@ function ServiceList() {
 
    const handleCreate = async () => {
       try {
-         await axios.post("http://localhost:8000/product/creatProducts", formData);
+         const createData = new FormData();
+         createData.append("name", formData.name);
+         createData.append("category", formData.category);
+         createData.append("description", formData.description);
+         createData.append("image", formData.image);
+         if (formData.file instanceof File) createData.append("file", formData.file);
+
+         await axios.post("http://localhost:8000/product/create", createData, {
+            headers: { "Content-Type": "multipart/form-data" },
+         });
+
          setIsCreateModalOpen(false);
          resetFormData();
          fetchServices();
@@ -97,22 +117,28 @@ function ServiceList() {
       }
    };
 
-   const handleFileUpload = async (e) => {
+   const handleFileUpload = (e) => {
       const file = e.target.files[0];
-      if (!file) return;
+      if (file) {
+         setFormData((prev) => ({ ...prev, file }));
+      }
+   };
 
-      const fileData = new FormData();
-      fileData.append("file", file);
-
+   const downloadHTML = async (id, name) => {
       try {
-         const response = await axios.post(
-            "http://localhost:8000/upload-html",
-            fileData,
-            { headers: { "Content-Type": "multipart/form-data" } }
-         );
-         setFormData((prev) => ({ ...prev, file: response.data.url }));
+         const response = await axios.get(`http://localhost:8000/product/download/${id}`, {
+            responseType: 'blob'
+         });
+
+         const url = window.URL.createObjectURL(new Blob([response.data]));
+         const link = document.createElement('a');
+         link.href = url;
+         link.setAttribute('download', `${name}.html`);
+         document.body.appendChild(link);
+         link.click();
+         link.remove();
       } catch (err) {
-         console.error("File upload failed", err);
+         console.error("Download failed", err);
       }
    };
 
@@ -127,46 +153,12 @@ function ServiceList() {
          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
             <div className="bg-white p-6 rounded-lg w-96 shadow-xl">
                <h3 className="text-lg font-bold text-gray-800">{title}</h3>
-               <input 
-                  type="text" 
-                  name="name"
-                  value={formData.name} 
-                  onChange={handleChange} 
-                  className="w-full mt-2 p-2 border rounded"
-                  placeholder="Service Name"
-               />
-               <input 
-                  type="text"
-                  name="category" 
-                  value={formData.category} 
-                  onChange={handleChange} 
-                  className="w-full mt-2 p-2 border rounded"
-                  placeholder="Category"
-               />
-               <textarea 
-                  name="description"
-                  value={formData.description} 
-                  onChange={handleChange} 
-                  className="w-full mt-2 p-2 border rounded"
-                  placeholder="Description"
-               ></textarea>
-               <input 
-                  type="file" 
-                  accept="image/*" 
-                  onChange={handleImageUpload} 
-                  className="w-full p-2 border rounded mt-2"
-               />
-               <input 
-                  type="file" 
-                  accept=".html" 
-                  onChange={handleFileUpload} 
-                  className="w-full p-2 border rounded mt-2"
-               />
-
-               {formData.image && (
-                  <img src={formData.image} alt="Service Preview" className="w-full h-32 object-cover mt-2 rounded-md" />
-               )}
-
+               <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full mt-2 p-2 border rounded" placeholder="Service Name" />
+               <input type="text" name="category" value={formData.category} onChange={handleChange} className="w-full mt-2 p-2 border rounded" placeholder="Category" />
+               <textarea name="description" value={formData.description} onChange={handleChange} className="w-full mt-2 p-2 border rounded" placeholder="Description"></textarea>
+               <input type="file" accept="image/*" onChange={handleImageUpload} className="w-full p-2 border rounded mt-2" />
+               <input type="file" accept=".html" onChange={handleFileUpload} className="w-full p-2 border rounded mt-2" />
+               {formData.image && <img src={formData.image} alt="Service Preview" className="w-full h-32 object-cover mt-2 rounded-md" />}
                <div className="mt-4 flex justify-between">
                   <button onClick={onSubmit} className="px-4 py-2 bg-green-500 text-white rounded-md">Save</button>
                   <button onClick={onCancel} className="px-4 py-2 bg-red-500 text-white rounded-md">Cancel</button>
@@ -190,31 +182,22 @@ function ServiceList() {
                      <h3 className="text-lg font-bold text-gray-800 mt-3">{service.name}</h3>
                      <p className="text-sm text-gray-600"><strong>Category:</strong> {service.category}</p>
                      <p className="text-sm text-gray-600 mt-2">{service.description}</p>
-                     {service.file && (
-                        <div className="flex gap-4 mt-2">
-                           <button
-                              onClick={() => {
-                                 const link = document.createElement("a");
-                                 link.href = service.file;
-                                 link.download = `${service.name}.html`;
-                                 document.body.appendChild(link);
-                                 link.click();
-                                 document.body.removeChild(link);
-                              }}
-                              className="text-blue-600 hover:underline"
-                           >
-                              Download HTML
-                           </button>
-                           <button
-                              onClick={() => {
-                                 window.open(service.file, "_blank");
-                              }}
-                              className="text-green-600 hover:underline"
-                           >
-                              View HTML
-                           </button>
-                        </div>
-                     )}
+                     <div className="flex gap-4 mt-2">
+                        <button
+                           onClick={() => downloadHTML(service._id, service.name)}
+                           className="text-blue-600 hover:underline"
+                        >
+                           Download HTML
+                        </button>
+                        <button
+                           onClick={() => {
+                              window.open(`http://localhost:8000/product/download/${service._id}`, "_blank");
+                           }}
+                           className="text-green-600 hover:underline"
+                        >
+                           View HTML
+                        </button>
+                     </div>
                      <div className="mt-4 flex justify-between">
                         <button onClick={() => handleEdit(service)} className="px-4 py-2 bg-blue-500 text-white rounded-md">Edit</button>
                         <button onClick={() => handleDelete(service._id)} className="px-4 py-2 bg-red-500 text-white rounded-md">Delete</button>
@@ -230,8 +213,8 @@ function ServiceList() {
             </div>
          </TitleCard>
 
-         <ServiceFormModal title="Add New Service" onSubmit={handleCreate} onCancel={() => setIsCreateModalOpen(false)} isOpen={isCreateModalOpen} />
-         <ServiceFormModal title="Edit Service" onSubmit={handleUpdate} onCancel={() => setSelectedService(null)} isOpen={!!selectedService} />
+         <ServiceFormModal title="Add New Product" onSubmit={handleCreate} onCancel={() => setIsCreateModalOpen(false)} isOpen={isCreateModalOpen} />
+         <ServiceFormModal title="Edit Product" onSubmit={handleUpdate} onCancel={() => setSelectedService(null)} isOpen={!!selectedService} />
       </div>
    );
 }
