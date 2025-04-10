@@ -9,7 +9,7 @@ function InternalPage(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(setPageTitle({ title : "Gallery" }))
+        dispatch(setPageTitle({ title : "Blog Management" }))
       }, [])
 
 

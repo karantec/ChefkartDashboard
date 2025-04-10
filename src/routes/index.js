@@ -21,7 +21,13 @@ const routes = [
   { // the url
   component: Dashboard, // view rendered
   },
- 
+  
+
+
+  {
+    path: '/Blog',
+    component:Blog,
+  },
   {
     path: '/team',
     component: Teams,

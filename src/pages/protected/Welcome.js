@@ -13,7 +13,7 @@ function InternalPage(){
           <div className="hero-content">
               <div className="max-w-md">
                 
-                  <button className="btn bg-base-100 btn-outline">Welcome to the Tesod Technology</button>
+                  <button className="btn bg-base-100 btn-outline">Welcome to the Chefkart</button>
               </div>
           </div>
       </div>

@@ -8,6 +8,18 @@ const routes = [
   },
 
   {
+    name: 'Blog-Management',
+  },
+  {
+    path: '/app/Blog',
+  
+    name: 'View-Blog',
+  },
+
+
+
+  
+  {
     path: '/app/Gallery',
   
     name: 'View-Gallery',
