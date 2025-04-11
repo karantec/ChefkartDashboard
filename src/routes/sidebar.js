@@ -33,6 +33,14 @@ const routes = [
     name: 'View-Testimonial',
   },
   
+  {
+    name: 'Crousel-Management',
+  },
+  {
+    path: '/app/crousel',
+  
+    name: 'View-Crousel',
+  },
   
 
  

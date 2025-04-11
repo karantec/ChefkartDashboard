@@ -8,6 +8,7 @@ const Dashboard = lazy(() => import('../pages/protected/Dashboard'))
 const Gallery=lazy(()=>import('../pages/protected/Gallery1'));
 const  Testimonial=lazy(()=>import('../pages/protected/Testimonial'));
 const Blog=lazy(()=>import('../pages/protected/Blogs'))
+const Crousel=lazy(()=>import('../pages/protected/Crousel'))
 
 const routes = [
   { // the url
@@ -32,6 +33,10 @@ const routes = [
     component: Testimonial,
   },
 
+  {
+    path: '/crousel',
+    component: Crousel,
+  },
 
  
  
