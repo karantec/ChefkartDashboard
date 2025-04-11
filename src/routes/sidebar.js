@@ -15,15 +15,16 @@ const routes = [
   
     name: 'View-Blog',
   },
-
-
-
-  
+  {
+    name: 'Gallery-Management',
+  },
   {
     path: '/app/Gallery',
   
     name: 'View-Gallery',
   },
+
+  
   {
     path: '/app/Blog',
   
