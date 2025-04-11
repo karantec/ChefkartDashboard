@@ -1,19 +1,19 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setPageTitle } from '../../features/common/headerSlice'
-import Blog from '../../features/leads copy 6/index copy'
+import Gallery from '../../features/leads copy 6/index copy 3'
 
 
 function InternalPage(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(setPageTitle({ title : "Blog Management" }))
+        dispatch(setPageTitle({ title : "Gallery Management" }))
       }, [])
 
 
 return(
-        <Blog/>
+        <Gallery/>
     )
 }
 

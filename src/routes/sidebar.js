@@ -24,93 +24,28 @@ const routes = [
     name: 'View-Gallery',
   },
 
-  
   {
-    path: '/app/Blog',
-  
-    name: 'View-Blog',
+    name: 'Testimonial-Management',
   },
-
-  { 
-    name: 'RequestCallback'
-    
-  },
-
   {
-    path: '/app/Callback',
+    path: '/app/testimonial',
   
-    name: 'View-Callback',
-  },
-
-
-  { 
-    name: 'RequestCallback'
-    
-  },
-
-  {
-    path: '/app/Callback',
-  
-    name: 'View-Callback',
-  },
-  
-
-  {
-    path: '/app/internship',
-  
-    name: 'View-Internship',
-  },
-  
-
-  {
-    path: '/app/team',
- 
-    name: 'View-Teams',
-  },
-
-
-  {
-    path: '/app/Career',
-   
-    name: 'View-Candidates',
-  },
-  
-  
-  {
-    path: '/app/Job',
-    
-    name: 'View-Job',
-  },
-  
-  {
-    path: '/app/Services',
-
-    name: 'View-Services',
-  },
- 
-  {
-    path: '/app/Product',
-
-    name: 'View-Product',
-  },
- 
-  {
-    path: '/app/Testimonial',
-
     name: 'View-Testimonial',
   },
- 
-  {
-    path: '/app/Contact',
-
-    name: 'View-Contact',
-  },
   
-  {
-    path: '/app/Partnership',
-   
-    name: 'View-Partners',
-  },
+  
+
+ 
+
+  
+  
+
+  
+
+
+ 
+ 
+  
   
 ];
 
