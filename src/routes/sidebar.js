@@ -42,7 +42,32 @@ const routes = [
     name: 'View-Crousel',
   },
   
+  {
+    name: 'Chef-Details',
+  },
+  {
+    path: '/app/chef',
+  
+    name: 'View-Chef',
+  },
+  {
+    name: 'User-Details',
+  },
+  {
+    path: '/app/User',
+  
+    name: 'View-Users',
+  },
 
+
+  {
+    name: 'Booking-Details',
+  },
+  {
+    path: '/app/crousel',
+  
+    name: 'View-Booking',
+  },
  
 
   

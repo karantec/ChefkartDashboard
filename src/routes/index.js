@@ -9,6 +9,7 @@ const Gallery=lazy(()=>import('../pages/protected/Gallery1'));
 const  Testimonial=lazy(()=>import('../pages/protected/Testimonial'));
 const Blog=lazy(()=>import('../pages/protected/Blogs'))
 const Crousel=lazy(()=>import('../pages/protected/Crousel'))
+const Chef=lazy(()=>import('../pages/protected/ChefDetails'))
 
 const routes = [
   { // the url
@@ -38,7 +39,19 @@ const routes = [
     component: Crousel,
   },
 
- 
+  {
+    path: '/Chef',
+    component: Chef,
+  },
+
+  {
+    path: '/User',
+    component: Crousel,
+  },
+  {
+    path: '/booking',
+    component: Crousel,
+  },
  
   
 
