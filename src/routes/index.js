@@ -9,6 +9,7 @@ const Gallery=lazy(()=>import('../pages/protected/Gallery1'));
 const  Testimonial=lazy(()=>import('../pages/protected/Testimonial'));
 const Blog=lazy(()=>import('../pages/protected/Blogs'))
 const Crousel=lazy(()=>import('../pages/protected/Crousel'))
+const Service=lazy(()=>import('../pages/protected/Service'))
 const Chef=lazy(()=>import('../pages/protected/ChefDetails'))
 
 const routes = [
@@ -47,6 +48,10 @@ const routes = [
   {
     path: '/User',
     component: Crousel,
+  },
+  {
+    path: '/Service',
+    component: Service,
   },
   {
     path: '/booking',

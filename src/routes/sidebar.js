@@ -41,6 +41,15 @@ const routes = [
   
     name: 'View-Crousel',
   },
+  {
+    name: 'Service-Management',
+  },
+  {
+    path: '/app/Service',
+  
+    name: 'View-Service',
+  },
+  
   
   {
     name: 'Chef-Details',
