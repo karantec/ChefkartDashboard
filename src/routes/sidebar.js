@@ -7,43 +7,55 @@ const routes = [
     name: 'Dashboard',
   },
 
+ 
   {
-    name: 'Blog-Management',
+    path: '/app/Home',
+  
+    name: 'View-Home',
   },
+  {
+    path: '/app/ImageGallery',
+    name: 'View-ImageGallery'
+  },
+  
   {
     path: '/app/Blog',
   
     name: 'View-Blog',
   },
-  {
-    name: 'Gallery-Management',
-  },
+  
   {
     path: '/app/Gallery',
   
     name: 'View-Gallery',
   },
 
-  {
-    name: 'Testimonial-Management',
-  },
+ 
   {
     path: '/app/testimonial',
   
     name: 'View-Testimonial',
   },
+
   
   {
-    name: 'Crousel-Management',
+    path: '/app/joinChef',
+  
+    name: 'View-JoinBlogBlog',
   },
+  
+  {
+    path: '/app/investor',
+  
+    name: 'View-Investor',
+  },
+  
   {
     path: '/app/crousel',
   
     name: 'View-Crousel',
   },
-  {
-    name: 'Service-Management',
-  },
+ 
   {
     path: '/app/Service',
   
@@ -51,17 +63,13 @@ const routes = [
   },
   
   
-  {
-    name: 'Chef-Details',
-  },
+ 
   {
     path: '/app/chef',
   
     name: 'View-Chef',
   },
-  {
-    name: 'User-Details',
-  },
+ 
   {
     path: '/app/User',
   
@@ -69,9 +77,7 @@ const routes = [
   },
 
 
-  {
-    name: 'Booking-Details',
-  },
+  
   {
     path: '/app/crousel',
   
